@@ -1,6 +1,6 @@
 # URL-Shortener-Flask
 
-A simple flask app to url shortener
+A simple flask app to URL shortener
 
 ![Seçim_013](https://user-images.githubusercontent.com/120065120/209240557-17e03800-32ab-4c37-8cb8-28aa0f0debc0.png)
 
