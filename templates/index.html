@@ -1,0 +1,89 @@
+{% extends "bootstrap/base.html" %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('static', filename='styles.css')}}">
+{% endblock %}
+
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#1e1e1e;text-align:center;">
+        <h1 style="color: antiquewhite;"> URL Shortener <span class="badge">✂️</span></h1>
+    </div>
+  </nav>
+  {% endblock %}
+  {% block content %}
+
+  <div class="container" style="align-items: center;margin-top:10%;width:60%">
+  <form action="{{ url_for('index') }}" method="post" style="align-items: center;">
+    <div class="form-group">
+      <label for="url" class="text-primary">URL</label>
+      <input type="text" class="form-control" name="url"  id="url" placeholder="Enter URL" style="width: 100%;">
+    </div>
+    <input type="submit" class="btn btn-primary btn-block" value="Submit">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+  </form>
+</div>
+
+
+<div class="container" style="align-items: center;">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-primary" role="alert">
+      <h3 class="text-danger">{{ message }}</h3>
+    </div>     
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+</div>
+
+{% if shorted_url %}
+
+<div class="container">
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4" style="margin: auto;">
+      <div class="card-wrapper">
+      <div class="card d-flex justify-content-center" style="width: 18rem; margin:auto">
+        <img class="card-img-top" src="{{ qr_code }}" alt="QR Code">
+        <div class="card-body">
+          <br>
+          <a href="{{ shorted_url }}" class="btn btn-danger btn-block" >Go</a>
+          <br>
+
+          <input type="text" value="{{ shorted_url }}" id="myInput"> 
+          <br>
+          <button onclick="myFunction()">Copy to Clipboard 📋</button>
+          
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+<!-- Coppy to Clipboard -->
+{% block scripts %}
+<script>
+  function myFunction() {
+    var copyText = document.getElementById("myInput");
+  
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); 
+  
+    navigator.clipboard.writeText(copyText.value);
+
+    alert("Copied the text: " + copyText.value);
+  } 
+</script>
+{{super()}}
+{% endblock %}
+
+{% endblock %}
+
