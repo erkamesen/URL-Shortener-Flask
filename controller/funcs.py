@@ -39,9 +39,6 @@ def get_original_url(hashid):
     """
     To go to the "/<id>" endpoint. We need check this hashed id in database
     we decode and convert it to real id and we get the target url 
-
-    
-
     Returns:
         TARGET URL
     """
