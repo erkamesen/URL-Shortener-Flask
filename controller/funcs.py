@@ -27,10 +27,14 @@ def startswith_http(f):
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if f(*args, **kwargs).startswith("http://") or f(*args, **kwargs).startswith("https://"):
-            return f(*args, **kwargs)
+        if f(*args, **kwargs) != False:
+            url = f(*args, **kwargs)
+            if url.startswith("http://") or url.startswith("https://"):
+                return url
+            else:
+                return f"http://{url}"
         else:
-            return f"http://{f(*args, **kwargs)}"
+            return f(*args, **kwargs)
     return decorated_function
   
 
