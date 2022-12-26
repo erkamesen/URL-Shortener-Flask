@@ -67,7 +67,8 @@ def short_url(form_url):
         TARGET URL
     """
     new_url = URL()
-    url = new_url.get_row(form_url)
+    url = url_checker(form_url)
+    url = new_url.get_row(url)
     if url:        
         short_url = request.host_url + create_hashid(url.id)
         return short_url
