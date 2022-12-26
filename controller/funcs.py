@@ -1,5 +1,5 @@
 from hashids import Hashids
-from models import URL
+from models import URL, db
 from flask import request
 from sqlalchemy.exc import InvalidRequestError
 from functools import wraps
@@ -54,7 +54,10 @@ def get_original_url(hashid):
     except InvalidRequestError:
         return False
     
-    
+@startswith_http
+def url_checker(form_url):
+    return form_url
+
 def short_url(form_url):
     """_summary_
     Firstly we create a new object to check if it exists in the database 
@@ -69,10 +72,23 @@ def short_url(form_url):
         short_url = request.host_url + create_hashid(url.id)
         return short_url
     else:
-        new_url.add_url(form_url)
-        url = new_url.get_row(form_url)
+        checked_url = url_checker(form_url)
+        new_url.add_url(checked_url)
+        url = new_url.get_row(checked_url)
         short_url = request.host_url + create_hashid(url.id)
         return short_url
+    
+    
+def click_counter(original_url):
+    url = URL()
+    target_url = url.get_row(original_url)
+    target_url.click = target_url.click + 1
+    db.session.commit()
+    
+    
+def show_stats():
+    urls = URL.query.order_by(URL.click).all()
+    return urls[::-1]
     
   
     

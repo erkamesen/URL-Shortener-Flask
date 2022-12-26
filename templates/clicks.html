@@ -1,0 +1,35 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %} URL Shortener - Clicks{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#1e1e1e;text-align:center;">
+        <h1 style="color: antiquewhite;"> URL Shortener <span class="badge">✂️</span></h1>
+    </div>
+  </nav>
+  {% endblock %}
+  {% block content %}
+
+
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Link</th>
+        <th scope="col">Last Click</th>
+        <th scope="col">Click</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for url in url_list %}
+      <tr>
+        <th scope="row"></th>
+        <td> <a href="{{ url.original_url }}">{{ url.original_url }}</a> </td>
+        <td>{{ url.created_time }}</td>
+        <td>{{ url.click }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

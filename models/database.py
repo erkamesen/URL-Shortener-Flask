@@ -12,9 +12,10 @@ class URL(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     original_url = db.Column(db.String, nullable=False)
     created_time = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    click = db.Column(db.Integer, default = 1)
     
     def __repr__(self) -> str:
-        return f"<original_url: {self.original_url}, created_time: {self.created_time}, qr_code: {self.qr_code}>"
+        return f"<original_url: {self.original_url}, created_time: {self.created_time}, total_click: {self.click}>"
     
     @classmethod
     def get_all_datas(cls):
@@ -37,6 +38,9 @@ class URL(db.Model):
         url = self.query.get(id)
         return url.original_url
     
+    @classmethod
+    def order_by(cls, object):
+        cls.query.order_by(object).all()
     
 
         
