@@ -8,6 +8,12 @@ A simple flask app to URL shortener
 
 ![Seçim_014](https://user-images.githubusercontent.com/120065120/209240737-d2d3125e-e8bb-43f7-befe-25de5e7ecf10.png)
 
+## Features
+- Shorten any valid URL
+- Keep track of the number of clicks on the shortened URL
+- Keep track of the date of create click on the shortened URL
+- Redirect to the original URL when the shortened URL is accessed
+
 ## INSTALLATION 
 
 To run the app, install the requirements
