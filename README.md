@@ -10,6 +10,7 @@ A simple flask app to URL shortener
 
 ## Features
 - Shorten any valid URL
+- Generate QR Code for valid URL
 - Keep track of the number of clicks on the shortened URL
 - Keep track of the date of create click on the shortened URL
 - Redirect to the original URL when the shortened URL is accessed
