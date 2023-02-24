@@ -28,11 +28,4 @@ pip install -r requirements.txt
 ```
 flask run
 ```
-or run this command(Windows)
-```
-python -m flask run
-```
-or run this command(Linux-Mac)
-```
-python3 -m flask run
-```
+
