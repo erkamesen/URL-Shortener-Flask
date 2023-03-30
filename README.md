@@ -28,4 +28,5 @@ pip install -r requirements.txt
 ```
 flask run
 ```
+URL Shortener is running now on your localhost: http://127.0.0.1:5000
 
